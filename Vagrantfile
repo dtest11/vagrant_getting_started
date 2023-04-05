@@ -1,15 +1,15 @@
 Vagrant.configure("2") do |config|
-  config.vm.define "master" do |master|
-    master.vm.box = "bento/ubuntu-18.04"
-    master.vm.network "public_network",bridge: "wlp58s0",ip: "192.168.1.120"
-    master.vm.provision :shell, path: "./apt_soure.sh"
-    master.vm.provider "virtualbox" do |hv|
-      hv.name = "master"
-      hv.memory = 2048
+  config.vm.define "node0" do |node0|
+    node0.vm.box = "bento/ubuntu-18.04"
+    node0.vm.network "public_network",bridge: "wlp58s0",ip: "192.168.1.120"
+    node0.vm.provision :shell, path: "./apt_soure.sh"
+    node0.vm.provider "virtualbox" do |hv|
+      hv.name = "node0"
+      hv.memory = 4096
       hv.cpus = 2
-      hv.linked_clone = true
+      hv.linked_clone = false
     end
-    master.vm.hostname = "master.localdomain"
+    node0.vm.hostname = "master.localdomain"
     
   end
 
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 
     node1.vm.provider "virtualbox" do |hv|
       hv.name = "node1"
-      hv.memory = 2048
+      hv.memory = 4096
       hv.cpus = 2
       hv.linked_clone = false
     end

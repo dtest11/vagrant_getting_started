@@ -14,3 +14,6 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 EOF
 
 apt-get update
+apt-get install vim
+
+sed -i "s/https\:\/\/registry-1.docker.io/http\:\/\/hub-mirror.com:5000/g"  /etc/containerd/config.toml 
